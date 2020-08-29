@@ -1,0 +1,38 @@
+.bird-question-card {
+  display: flex;
+  border-radius: 0.5rem;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+
+}
+
+.questionImage {
+  width: 200px;
+  height: 155px;
+  border-radius: 10px;
+  margin: 0 2rem;
+  
+}
+.imageContainer {
+  flex: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+.bird-question-info-container {
+  padding: 2rem 0 0 0;
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+@media (max-width: 400px) {
+  .bird-question-player{
+    transform: scale(0.75,0.75);
+  }
+}
