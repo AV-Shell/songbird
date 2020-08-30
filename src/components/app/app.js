@@ -23,19 +23,20 @@ export default class App extends Component {
     console.log(this.birds.getBirdsStep(4));
 
     return (
-          <div className="songBird-app">
-            Application Songbird
-            <Header />
+      <div className="songBird-app container">
+        Application Songbird
+        <Header />
 
-            <BirdQuestion gameStep={this.state.gameStep} />
+        <BirdQuestion gameStep={this.state.gameStep} />
+        <div className="row my-2">
+          <BirdAnswers gameStep={this.state.gameStep} />
 
-            <BirdAnswers gameStep={this.state.gameStep} />
+          <BirdDetails gameStep={this.state.gameStep} />
 
-            <BirdDetails  gameStep={this.state.gameStep}/>
+          <BirdNext active={true}/>
+        </div>
 
-            <BirdNext />
-
-          </div>
+      </div>
     );
   }
 }
