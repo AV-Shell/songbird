@@ -5,7 +5,7 @@ import BirdQuestion from '../bird-question';
 import BirdAnswers from '../bird-answers';
 import BirdDetails from '../bird-details';
 import BirdNext from '../bird-next';
-
+import GameOverScreen from '../game-over-screen';
 import BirdDataService, { getRandomInt } from '../../services/bird-data-service';
 import './app.css';
 
@@ -15,12 +15,13 @@ export default class App extends Component {
   birds = new BirdDataService();
 
   state = {
-    gameStep: 4,
+    gameStep: 0,
     randomAnserNum: getRandomInt(6),
     haveCorrectAnswer: false,
     displayNum: null,
     answering: [false, false, false, false, false, false],
     score: 0,
+    gameOver: false,
   }
 
   allSoundStop = () => {
@@ -42,10 +43,6 @@ export default class App extends Component {
 
   onAnswer = (id) => {
     console.log(id);
-    if (this.state.haveCorrectAnswer) {
-
-
-    }
     this.setState((currentState) => {
       if (currentState.haveCorrectAnswer) {
         console.log('Allready have correct answer');
@@ -83,14 +80,62 @@ export default class App extends Component {
     });
   };
 
+  onNextLevel = () => {
+    console.log('Next Level');
+    this.setState((currentState) => {
+      if (currentState.gameStep >= 5) {
+        console.log('Вжух, ЩАК !!!!');
+        return {
+          gameOver: true,
+        }
+      }
+      else {
+        return {
+          gameStep: (currentState.gameStep + 1),
+          randomAnserNum: getRandomInt(6),
+          haveCorrectAnswer: false,
+          displayNum: null,
+          answering: [false, false, false, false, false, false],
+        }
+      }
+    });
+  }
+
+  onGameRestart = () => {
+    this.setState(() => {
+      return {
+        gameStep: 0,
+        randomAnserNum: getRandomInt(6),
+        haveCorrectAnswer: false,
+        displayNum: null,
+        answering: [false, false, false, false, false, false],
+        score: 0,
+        gameOver: false,
+      }
+    });
+  }
+
 
   render() {
     console.log('Hello World');
     console.log(this.birds.getBirdsStep(4));
-
+    if (this.state.gameOver) {
+      console.log('game over')
+      return (
+        <div className="songBird-app container">
+          <Header
+            score={this.state.score}
+            gameStep={this.state.gameStep}
+          />
+          <GameOverScreen
+            score={this.state.score}
+            onGameRestart={this.onGameRestart}
+          />
+        </div>
+      )
+    }
     return (
       <div className="songBird-app container">
-        Application Songbird
         <Header
           score={this.state.score}
           gameStep={this.state.gameStep}
@@ -118,7 +163,9 @@ export default class App extends Component {
             displayNum={this.state.displayNum}
           />
 
-          <BirdNext active={this.state.haveCorrectAnswer} />
+          <BirdNext active={this.state.haveCorrectAnswer}
+            onNextLevel={this.onNextLevel}
+          />
         </div>
         <audio className="audioError  audio-win-error songbird-audioSource" src="./error.mp3"></audio>
         <audio className="audioWin  audio-win-error songbird-audioSource" src="./win.mp3"></audio>
