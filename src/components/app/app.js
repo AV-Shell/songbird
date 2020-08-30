@@ -42,10 +42,8 @@ export default class App extends Component {
 
 
   onAnswer = (id) => {
-    console.log(id);
     this.setState((currentState) => {
       if (currentState.haveCorrectAnswer) {
-        console.log('Allready have correct answer');
         return {
           displayNum: (id - 1),
         }
@@ -68,7 +66,6 @@ export default class App extends Component {
           this.winloseSoundStop();
           document.querySelector('.audioError').play();
         }
-        console.log('New answer');
         return {
           displayNum: (id - 1),
           answering: arrr,
@@ -81,10 +78,8 @@ export default class App extends Component {
   };
 
   onNextLevel = () => {
-    console.log('Next Level');
     this.setState((currentState) => {
       if (currentState.gameStep >= 5) {
-        console.log('Вжух, ЩАК !!!!');
         return {
           gameOver: true,
         }
@@ -117,10 +112,7 @@ export default class App extends Component {
 
 
   render() {
-    console.log('Hello World');
-    console.log(this.birds.getBirdsStep(4));
     if (this.state.gameOver) {
-      console.log('game over')
       return (
         <div className="songBird-app container">
           <Header

@@ -3,7 +3,6 @@ import React from 'react';
 import './bird-question.css';
 
 const BirdQuestion = ({haveCorrectAnswer, bird}) => {
-  console.log(bird);
   console.log(bird.name);
   const imgUrl = haveCorrectAnswer ? bird.image : "./unknown-bird.jpg";
   const birdName = haveCorrectAnswer ? bird.name : "******";
