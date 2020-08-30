@@ -30,6 +30,10 @@
   justify-content: space-evenly;
   align-items: center;
 }
+.bird-question-hr{
+  border: 1px solid #444;
+}
+
 
 @media (max-width: 400px) {
   .bird-question-player{

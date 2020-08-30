@@ -2,17 +2,21 @@ import React from 'react';
 
 import './bird-question.css';
 
-const BirdQuestion = () => {
+const BirdQuestion = ({haveCorrectAnswer, bird}) => {
+  console.log(bird);
+  console.log(bird.name);
+  const imgUrl = haveCorrectAnswer ? bird.image : "./unknown-bird.jpg";
+  const birdName = haveCorrectAnswer ? bird.name : "******";
   return (
     <div className="jumbotron bird-question-card">
       <div className="imageContainer">
-        <img className="questionImage" src="https://live.staticflickr.com/65535/49221158846_b0b69a58f1.jpg" alt="Журавль"></img>
+        <img className="questionImage" src={imgUrl} alt="Журавль"></img>
       </div>
       <div className="bird-question-info-container">
-        <div className="display-6 Birdname">Журавль</div>
-        <hr className="my-6"></hr>
+        <div className="display-6 Birdname">{birdName}</div>
+        <hr className="bird-question-hr"></hr>
         <div className="bird-question-player">
-          <audio src="URL" controls="controls"></audio>
+          <audio src={bird.audio} controls="controls"></audio>
         </div>
       </div>
     </div>
