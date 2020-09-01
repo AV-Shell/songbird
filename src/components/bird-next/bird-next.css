@@ -1,0 +1,13 @@
+.next-level-button{
+  background-color: #00bc8c;
+  cursor: pointer;
+
+  /* color: black; */
+}
+
+.next-level-button:hover{
+  background-color: #009c76;
+  cursor: pointer;
+  
+  /* color: black; */
+}
